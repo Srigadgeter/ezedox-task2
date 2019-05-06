@@ -2,10 +2,22 @@ import React, { Component } from "react";
 
 import "./TrafficLight.css";
 
-const RED_LIGHT_TIME = 3;
-const YELLOW_LIGHT_TIME = 1;
-const GREEN_LIGHT_TIME = 3;
-const CLASSES = ["lights", "lights", "lights"];
+const TOTAL_LAMPS = 7; // number of lamps
+const TIMING_ARRAY = [4, 3, 2, 1, 2, 3, 4]; // timing for each lamps - unit of time is seconds
+const COLORS_ARRAY = [
+  "red",
+  "yellow",
+  "green",
+  "blue",
+  "orange",
+  "magenta",
+  "indigo"
+]; // color for each lamps
+
+const CLASSES = Array(TOTAL_LAMPS).fill("");
+const CLASSES_ARRAY = Array(TOTAL_LAMPS)
+  .fill("")
+  .map(() => new Array(TOTAL_LAMPS).fill(""));
 
 class TrafficLight extends Component {
   constructor(props) {
@@ -31,18 +43,12 @@ class TrafficLight extends Component {
 
   lighting = () => {
     let i;
-    const timingArray = [RED_LIGHT_TIME, YELLOW_LIGHT_TIME, GREEN_LIGHT_TIME];
-    const classesArray = [
-      ["lights red", "lights", "lights"],
-      ["lights", "lights yellow", "lights"],
-      ["lights", "lights", "lights green"]
-    ];
 
-    this.props.startLight ? (i = 0) : (i = 2);
+    this.props.startLight ? (i = 0) : (i = TOTAL_LAMPS - 1);
 
     this.setState({
-      countDown: timingArray[i],
-      classes: classesArray[i]
+      countDown: TIMING_ARRAY[i],
+      classes: CLASSES_ARRAY[i]
     });
 
     this.looping = setInterval(() => {
@@ -52,11 +58,11 @@ class TrafficLight extends Component {
         });
       } else {
         if (this.props.startLight) {
-          if (i < 2) {
+          if (i < TOTAL_LAMPS - 1) {
             i += 1;
             this.setState({
-              countDown: timingArray[i],
-              classes: classesArray[i]
+              countDown: TIMING_ARRAY[i],
+              classes: CLASSES_ARRAY[i]
             });
           } else {
             i = -1;
@@ -65,11 +71,11 @@ class TrafficLight extends Component {
           if (i > 0) {
             i -= 1;
             this.setState({
-              countDown: timingArray[i],
-              classes: classesArray[i]
+              countDown: TIMING_ARRAY[i],
+              classes: CLASSES_ARRAY[i]
             });
           } else {
-            i = 3;
+            i = TOTAL_LAMPS;
           }
         }
       }
@@ -77,15 +83,24 @@ class TrafficLight extends Component {
   };
 
   render() {
+    for (let i = 0; i < TOTAL_LAMPS; i++) {
+      CLASSES_ARRAY[i][i] = COLORS_ARRAY[i];
+    }
+
     const drawLights = () => {
       let lightsArray = [];
-      for (let i = 0; i < this.state.classes.length; i++) {
+      for (let i = 0; i < TOTAL_LAMPS; i++) {
         lightsArray.push(
-          <div key={`light${i}`} className={this.state.classes[i]} />
+          <div
+            key={`light${i}`}
+            className="lights"
+            style={{ backgroundColor: `${this.state.classes[i]}` }}
+          />
         );
       }
       return lightsArray;
     };
+
     return (
       <div className="trafficLights" id={`trafficLight${this.props.lightId}`}>
         <span className="title">Light {this.props.lightId}</span>
