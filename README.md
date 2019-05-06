@@ -35,11 +35,19 @@ You could add any number of light boards by modifying the below line in `App.js`
 const LIGHT_COUNT = 4;
 ```
 
-You could change the timings of the lights which are in `TrafficLight.js` file from `src` folder.
+You could change the timing & color of the lights & total lights count which are in `TrafficLight.js` file from `src` folder.
 And consider the timing values are in ***seconds***, which have been used in below lines.
 
 ```javascript
-const RED_LIGHT_TIME = 3;
-const YELLOW_LIGHT_TIME = 1;
-const GREEN_LIGHT_TIME = 3;
+const TOTAL_LAMPS = 7; // number of lamps
+const TIMING_ARRAY = [4, 3, 2, 1, 2, 3, 4]; // timing for each lamps - unit of time is seconds
+const COLORS_ARRAY = [
+  "red",
+  "yellow",
+  "green",
+  "blue",
+  "orange",
+  "magenta",
+  "indigo"
+]; // color for each lamps
 ```
