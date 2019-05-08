@@ -22,14 +22,6 @@
   width: max-content;
 }
 
-.lights {
-  width: 30px;
-  height: 30px;
-  margin: 0 5px;
-  border-radius: 30px;
-  border: 1px solid gray;
-}
-
 .title {
   font-size: 15px;
   font-weight: bold;
@@ -44,16 +36,4 @@
   text-align: center;
   height: max-content;
   border: 1px solid gray;
-}
-
-.red {
-  background-color: rgb(240, 53, 53);
-}
-
-.yellow {
-  background-color: rgb(235, 238, 55);
-}
-
-.green {
-  background-color: rgb(46, 209, 81);
 }

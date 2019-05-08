@@ -1,7 +1,8 @@
 .startBtn {
+  outline: none;
   display: block;
-  margin: 10px auto;
   color: white;
+  margin: 10px auto;
   padding: 10px 20px;
   border: transparent;
   border-radius: 10px;
@@ -11,4 +12,19 @@
 .startBtn:hover {
   cursor: pointer;
   background-color: #db6c39 !important;
+}
+
+.startBtn:disabled {
+  background-color: rgb(187, 185, 185) !important;
+}
+
+.errorBlock {
+  color: white;
+  font-size: 13px;
+  margin: 80px auto;
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px #c9cacc;
+  background: linear-gradient(135deg, #f53142 0%, #da102e 100%);
 }
