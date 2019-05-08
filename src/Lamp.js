@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "./Lamp.css";
 
+let countDown = 0;
+
 class Lamp extends Component {
   componentWillReceiveProps = nextProps => {
     const { isTriggered } = nextProps;
@@ -9,14 +11,14 @@ class Lamp extends Component {
       this.counting();
     } else {
       clearInterval(this.timer);
-      this.setState({ countDown: 0 });
+      countDown = 0;
     }
   };
 
   counting = () => {
-    let countDown = this.props.timer;
+    countDown = this.props.timer;
     this.timer = setInterval(() => {
-      if (countDown > 0) {
+      if (countDown >= 0) {
         console.log("countdown", countDown, "of", this.props.element);
         this.props.onChangeCountDown(countDown);
         countDown -= 1;
